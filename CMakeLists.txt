@@ -1,4 +1,4 @@
-cmake_required_version(3.7)
+cmake_minimum_required(VERSION 3.7)
 project(OccultMathParser)
 
 file(GLOB SOURCE_AND_HEADERS
@@ -7,6 +7,7 @@ file(GLOB SOURCE_AND_HEADERS
     "include/*.hpp"
 )
 
-set(CMAKE_CXX_FLAGS "-Wall -std=c++14 -lstdc++")
+set(CMAKE_CXX_STANDARD 14)
 
+set(CMAKE_CXX_FLAGS "-Wall")
 add_executable(occult_math_parser ${SOURCE_AND_HEADERS})
