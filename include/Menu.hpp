@@ -9,8 +9,8 @@ namespace OM {
 
     class Menu {
     public:
-        virtual init()=0;
-        virtual setOnExit(const Runnable& runnable);
+        virtual void init()=0;
+        virtual void setOnExit(const Runnable& runnable);
     };
 }
 
