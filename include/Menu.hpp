@@ -10,7 +10,7 @@ namespace OM {
     class Menu {
     public:
         virtual void init()=0;
-        virtual void setOnExit(const Runnable& runnable);
+        virtual void setOnExit(const Runnable& runnable) noexcept;
     };
 }
 
