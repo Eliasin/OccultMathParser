@@ -7,5 +7,6 @@
 #include "ProductExpression.hpp"
 #include "QuotientExpression.hpp"
 #include "NegationExpression.hpp"
+#include "LiteralExpression.hpp"
 
 #endif
