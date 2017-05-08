@@ -42,6 +42,10 @@ namespace OM {
                 std::string input;
                 in >> input;
                 parser = std::move(parserFactory.construct(input));
+                clearScreen();
+                out << '\n' << input << " parser chosen." << std::endl;
+                waitForKey();
+                clearScreen();
                 break;
             }
             catch (NoSuchParserException& e) {
