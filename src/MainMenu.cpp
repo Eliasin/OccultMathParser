@@ -40,7 +40,7 @@ namespace OM {
 
                 out << "Please enter your choice of parser: ";
                 std::string input;
-                in >> input;
+                std::getline(in, input, '\n');
                 parser = std::move(parserFactory.construct(input));
                 clearScreen();
                 out << '\n' << input << " parser chosen." << std::endl;
@@ -58,7 +58,7 @@ namespace OM {
             while (true) {
                 out << "Please enter the expression to be simplified: ";
                 std::string input;
-                in >> input;
+                std::getline(in, input, '\n');
 
                 try {
                     auto result = parser->parse(input);
