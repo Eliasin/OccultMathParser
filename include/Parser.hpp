@@ -8,10 +8,16 @@
 namespace OM {
     class Parser {
     public:
-        virtual std::unique_ptr<Expression> parse(const std::string& s) const=0;
+        virtual std::string parse(const std::string& s) const=0;
     };
 
-    class InvalidFormatException : public std::exception {};
+    class InvalidFormatException : public std::exception {
+        std::string s;
+    public:
+        InvalidFormatException() : s("Exception occurred") {}
+        InvalidFormatException(const std::string&& what) : s(what) {}
+        const char* what() const noexcept override;
+    };
 }
 
 #endif

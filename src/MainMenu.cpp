@@ -62,10 +62,10 @@ namespace OM {
 
                 try {
                     auto result = parser->parse(input);
-                    out << result->evaluate().format().toString() << std::endl;
+                    out << result << std::endl;
                 }
                 catch (InvalidFormatException& e) {
-                    out << e.what();
+                    out << "Parsing halted due to: " << e.what() << std::endl;
                     waitForKey();
                     clearScreen();
                 }
