@@ -5,7 +5,9 @@
 namespace OM {
 
     std::string Fraction::toString() const noexcept {
-        return std::to_string(n) + "/" + std::to_string(d);
+        std::string numerator = n > 0 ? std::to_string(n) : '(' + std::to_string(n) + ')';
+        std::string denominator = d > 0 ? std::to_string(d) : '(' + std::to_string(d) + ')';
+        return numerator + "/" + denominator;
     }
 
     const Fraction Fraction::simplify() const noexcept {
