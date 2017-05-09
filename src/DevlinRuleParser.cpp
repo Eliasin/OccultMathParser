@@ -30,8 +30,11 @@ namespace OM {
                 c++;
             }
         }
-        if (*c != '/') {
-            throw InvalidFormatException("Non fraction operand.");
+        if (*c != '/' && *c != ' ' && *c != '\0') {
+            throw InvalidFormatException("Invalid operand, found invalid character: ");
+        }
+        else if (*c == ' ' || *c == '\0') {
+            return { n, 1 };
         }
         c++;
         if (*c == '(') {
