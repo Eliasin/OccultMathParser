@@ -84,6 +84,9 @@ namespace OM {
         unsigned int operands = 0;
 
         while (true) {
+            if (operators > 9) {
+                throw InvalidFormatException("Too many operators, max is 9");
+            }
             buf1 = parseFraction(c);
             operands++;
             ignoreSpaces(c);
