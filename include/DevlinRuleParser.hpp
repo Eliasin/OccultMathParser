@@ -5,9 +5,9 @@
 
 namespace OM {
     class DevlinParser : public Parser {
-
+        bool isValidCharacter(char c) const;
     public:
-        std::unique_ptr<Expression> parse(const std::string& s) const override;
+        std::string parse(const std::string& s) const override;
     };
 }
 

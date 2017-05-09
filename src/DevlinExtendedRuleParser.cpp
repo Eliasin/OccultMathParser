@@ -13,27 +13,6 @@ namespace OM {
         while (*c == ' ') { c++; }
     }
 
-    int getNum(const char*& c) {
-        int results = 0;
-        int fact = 1;
-        std::string s;
-        if (*c == '-') {
-            fact = -1;
-            c++;
-        }
-        while (std::isdigit(*c)) {
-            s += *c;
-            c++;
-            std::cout << *c;
-        }
-        unsigned int place = s.size();
-        for (char c : s) {
-            results += (c - '0') * place;
-        }
-        return results * fact;
-
-    }
-
     static Fraction parseFraction(const char*& c) {
         bool negNum = false;
         bool negDen = false;
@@ -76,8 +55,12 @@ namespace OM {
         return { n, d };
     }
 
+    static bool isOperator(char c) {
+        return c == '/' || c == '*' || c == '+' || c == '-';
+    }
+
     static char parseOperator(const char*& c) {
-        if (*c != '/' && *c != '*' && *c != '+' && *c != '-') {
+        if (!isOperator(*c)) {
             throw InvalidFormatException("Invalid operator.");
         }
         c++;
@@ -97,19 +80,36 @@ namespace OM {
         Fraction buf2;
         char op;
 
-        while (*c != '\0') {
+        unsigned int operators = 0;
+        unsigned int operands = 0;
+
+        while (true) {
             buf1 = parseFraction(c);
+            operands++;
             ignoreSpaces(c);
+            if (!(*c) && operands >= 2 && operators >= 1) {
+                output += buf1.format().toString();
+                break;
+            }
             op = parseOperator(c);
+            operators++;
+            ignoreSpaces(c);
             buf2 = parseFraction(c);
+            operands++;
             if (op == '-') {
                 op = '+';
-                buf2 * Fraction(-1, 1);
+                buf2 = buf2 * Fraction(-1, 1);
             }
+            ignoreSpaces(c);
             writeExpression(output, buf1, op, buf2);
+
+            if (!(*c)) {
+                break;
+            }
+            output += parseOperator(c);
+            output += ' ';
             ignoreSpaces(c);
         }
-
         return output;
     }
 
