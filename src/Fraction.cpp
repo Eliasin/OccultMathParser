@@ -7,6 +7,7 @@ namespace OM {
     std::string Fraction::toString() const noexcept {
         std::string numerator = n > 0 ? std::to_string(n) : '(' + std::to_string(n) + ')';
         std::string denominator = d > 0 ? std::to_string(d) : '(' + std::to_string(d) + ')';
+        if (d == 1) return numerator;
         return numerator + "/" + denominator;
     }
 
