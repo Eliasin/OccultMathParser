@@ -17,7 +17,7 @@ namespace OM {
             return std::unique_ptr<Parser>(new DevlinExtendedParser());
         };
         parsers["devlin"] = devlinGen;
-        parsers["devlin_extedned"] = devlinExtendedGen;
+        parsers["devlin_extended"] = devlinExtendedGen;
     }
 
     std::vector<std::string> ParserFactory::getParsers() const {
