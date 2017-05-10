@@ -91,7 +91,7 @@ namespace OM {
             op = '+';
             buf2 = buf2 * Fraction(-1, 1);
         }
-        ignoreSpaces(c);
+        if (*c != '\0') throw InvalidFormatException("Trailing characters.");
         writeExpression(output, buf1, op, buf2);
         return output;
     }
